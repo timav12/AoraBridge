@@ -34,24 +34,6 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Social proof */}
-        <div className="mb-12">
-          <p className="text-sm font-medium text-[#475569] mb-6">
-            Trusted by teams building the future of work
-          </p>
-          <div className="flex items-center justify-center gap-8 md:gap-12 opacity-30">
-            {["Platform A", "Platform B", "Platform C", "Platform D", "Platform E"].map(
-              (name) => (
-                <div
-                  key={name}
-                  className="h-8 w-20 md:w-24 bg-[#94A3B8] rounded"
-                  aria-label={name}
-                />
-              )
-            )}
-          </div>
-        </div>
-
         {/* Hero visual — abstract payment flow */}
         <div className="max-w-3xl mx-auto">
           <div className="relative rounded-2xl border border-[#E2E8F0] bg-white p-8 shadow-sm">
