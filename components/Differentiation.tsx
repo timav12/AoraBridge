@@ -1,97 +1,59 @@
-import { Check, X } from "lucide-react";
-
-const comparison = [
-  {
-    feature: "Model",
-    deel: "Full-stack EoR, in-house only",
-    aorabridge: "Neutral API for any platform",
-  },
-  {
-    feature: "White-label",
-    deel: "No",
-    aorabridge: "Yes",
-    deelBool: false,
-    aoraBool: true,
-  },
-  {
-    feature: "Cost per payment",
-    deel: "$25–50 wire fee",
-    aorabridge: "0.5–1% flat",
-  },
-  {
-    feature: "Settlement",
-    deel: "3–7 days",
-    aorabridge: "< 5 minutes",
-  },
+const rows = [
+  { feature: "Model", traditional: "In-house EoR", aorabridge: "Neutral API" },
+  { feature: "White-label", traditional: "\u2715", aorabridge: "\u2713" },
+  { feature: "Cost", traditional: "$25\u201350 wire", aorabridge: "0.5\u20131% flat" },
+  { feature: "Settlement", traditional: "3\u20137 days", aorabridge: "< 5 min" },
 ];
 
 export default function Differentiation() {
   return (
-    <section className="py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-center text-[#0F172A] mb-16">
+    <section className="py-24 md:py-28 px-6">
+      <div className="max-w-[1120px] mx-auto">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#a855f7] mb-4 text-center">
+          Why AoraBridge
+        </p>
+        <h2 className="font-mono text-[32px] font-bold tracking-tight text-[#f0f0f0] mb-12 text-center leading-[1.2]">
           Neutral infrastructure, not another EoR
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left — positioning */}
-          <div className="space-y-6">
-            <p className="text-lg text-[#475569] leading-relaxed">
-              Deel and Remote build for their own clients. They won&apos;t white-label
-              for competitors.
+          <div className="space-y-4">
+            <p className="text-base text-[#666] leading-relaxed">
+              Deel and Remote build for their own clients. They won&apos;t white-label for competitors.
             </p>
-            <p className="text-lg text-[#0F172A] font-semibold leading-relaxed">
+            <p className="text-base text-[#f0f0f0] font-semibold leading-relaxed">
               We&apos;re the payment layer that makes YOUR platform more competitive.
             </p>
-            <p className="text-lg text-[#475569] leading-relaxed">
-              The EoR market has 800+ providers. Deel and Remote serve only their
-              own clients. The other 790+ need neutral payment infrastructure.
-              That&apos;s us.
+            <p className="text-base text-[#666] leading-relaxed">
+              The EoR market has 800+ providers. Deel and Remote serve only their own clients. The other 790+ need neutral payment infrastructure. That&apos;s us.
             </p>
             <a
               href="#waitlist"
-              className="inline-block gradient-bg text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity mt-4"
+              className="inline-block mt-4 bg-[#a855f7] text-white font-mono font-semibold text-[13px] px-5 py-2.5 rounded-lg hover:opacity-85 transition-opacity"
             >
               Become a partner
             </a>
           </div>
 
           {/* Right — comparison table */}
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm overflow-hidden">
-            <div className="grid grid-cols-3 text-sm font-semibold border-b border-[#E2E8F0]">
-              <div className="p-4 text-[#475569]">Feature</div>
-              <div className="p-4 text-[#475569] text-center">Traditional</div>
-              <div className="p-4 text-center gradient-text">AoraBridge</div>
+          <div className="border border-[#1a1a1a] rounded-xl overflow-hidden">
+            {/* Header */}
+            <div className="grid grid-cols-3 bg-[#1a1a1a] font-mono text-[11px] font-semibold uppercase tracking-wide text-[#666]">
+              <div className="p-3.5">Feature</div>
+              <div className="p-3.5 text-center">Traditional</div>
+              <div className="p-3.5 text-center text-[#a855f7]">AoraBridge</div>
             </div>
-            {comparison.map((row) => (
+            {/* Rows */}
+            {rows.map((row) => (
               <div
                 key={row.feature}
-                className="grid grid-cols-3 text-sm border-b border-[#E2E8F0] last:border-b-0"
+                className="grid grid-cols-3 font-mono text-[13px] border-b border-[#1a1a1a] last:border-b-0"
               >
-                <div className="p-4 font-medium text-[#0F172A]">
-                  {row.feature}
-                </div>
-                <div className="p-4 text-center text-[#475569]">
-                  {row.deelBool !== undefined ? (
-                    row.deelBool ? (
-                      <Check className="w-5 h-5 text-[#22C55E] mx-auto" />
-                    ) : (
-                      <X className="w-5 h-5 text-[#EF4444] mx-auto" />
-                    )
-                  ) : (
-                    row.deel
-                  )}
-                </div>
-                <div className="p-4 text-center font-medium text-[#0F172A] bg-[#F8FAFC]">
-                  {row.aoraBool !== undefined ? (
-                    row.aoraBool ? (
-                      <Check className="w-5 h-5 text-[#22C55E] mx-auto" />
-                    ) : (
-                      <X className="w-5 h-5 text-[#EF4444] mx-auto" />
-                    )
-                  ) : (
-                    row.aorabridge
-                  )}
+                <div className="p-3.5 text-[#c8c8c8] font-medium">{row.feature}</div>
+                <div className="p-3.5 text-center text-[#666]">{row.traditional}</div>
+                <div className="p-3.5 text-center text-[#a855f7] font-semibold bg-[rgba(168,85,247,0.04)]">
+                  {row.aorabridge}
                 </div>
               </div>
             ))}

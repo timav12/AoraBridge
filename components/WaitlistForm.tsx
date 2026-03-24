@@ -14,91 +14,79 @@ export default function WaitlistForm() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setStatus("loading");
-
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, company, type }),
       });
-
-      if (res.ok) {
-        setStatus("success");
-      } else {
-        setStatus("error");
-      }
+      setStatus(res.ok ? "success" : "error");
     } catch {
       setStatus("error");
     }
   }
 
   return (
-    <section id="waitlist" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background orbs */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#4F46E5] rounded-full blur-[128px] opacity-10 -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-[#06B6D4] rounded-full blur-[128px] opacity-10 translate-x-1/2 -translate-y-1/2" />
+    <section id="waitlist" className="py-24 md:py-28 px-6 relative overflow-hidden text-center">
+      {/* Purple glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse,rgba(168,85,247,0.06)_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-[#0F172A] mb-4">
+      <div className="relative max-w-[1120px] mx-auto">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#a855f7] mb-4">
+          Early Access
+        </p>
+        <h2 className="font-mono text-[32px] font-bold tracking-tight text-[#f0f0f0] mb-4 leading-[1.2]">
           Be first in line
         </h2>
-        <p className="text-lg text-[#475569] mb-12 max-w-lg mx-auto">
-          We&apos;re onboarding launch partners now. You earn revenue share for 3
-          months — zero setup fee, zero risk.
+        <p className="text-base text-[#666] max-w-[560px] mx-auto mb-10 leading-relaxed">
+          We&apos;re onboarding launch partners now. You earn revenue share for 3 months &mdash; zero setup fee, zero risk.
         </p>
 
         {status === "success" ? (
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-10">
-            <CheckCircle className="w-12 h-12 text-[#22C55E] mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-[#0F172A] mb-2">
+          <div className="max-w-[440px] mx-auto bg-[#141414] border border-[#1a1a1a] rounded-xl p-10">
+            <CheckCircle className="w-10 h-10 text-[#22c55e] mx-auto mb-4" />
+            <h3 className="font-mono text-lg font-bold text-[#f0f0f0] mb-2">
               You&apos;re on the list!
             </h3>
-            <p className="text-[#475569]">
-              We&apos;ll reach out within 48 hours.
-            </p>
+            <p className="text-sm text-[#666]">We&apos;ll reach out within 48 hours.</p>
           </div>
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-8 md:p-10"
-          >
-            <div className="space-y-4 mb-6">
-              <input
-                type="email"
-                required
-                placeholder="Work email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition"
-              />
-              <input
-                type="text"
-                required
-                placeholder="Company name"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition"
-              />
-              <select
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition bg-white"
-              >
-                <option value="eor">EoR Platform</option>
-                <option value="hris">HRIS System</option>
-                <option value="staffing">Staffing / Marketplace</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
+          <form onSubmit={handleSubmit} className="max-w-[440px] mx-auto flex flex-col gap-3">
+            <input
+              type="email"
+              required
+              placeholder="Work email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-[#141414] border border-[#1a1a1a] rounded-lg px-4 py-3 font-mono text-[13px] text-[#c8c8c8] placeholder:text-[#666] outline-none focus:border-[#a855f7] transition-colors"
+            />
+            <input
+              type="text"
+              required
+              placeholder="Company name"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              className="w-full bg-[#141414] border border-[#1a1a1a] rounded-lg px-4 py-3 font-mono text-[13px] text-[#c8c8c8] placeholder:text-[#666] outline-none focus:border-[#a855f7] transition-colors"
+            />
+            <select
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              className="w-full bg-[#141414] border border-[#1a1a1a] rounded-lg px-4 py-3 font-mono text-[13px] text-[#c8c8c8] outline-none focus:border-[#a855f7] transition-colors cursor-pointer"
+            >
+              <option value="eor">EoR Platform</option>
+              <option value="hris">HRIS System</option>
+              <option value="staffing">Staffing / Marketplace</option>
+              <option value="other">Other</option>
+            </select>
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full gradient-bg text-white font-semibold py-4 rounded-full text-lg hover:opacity-90 transition-opacity disabled:opacity-70 flex items-center justify-center gap-2"
+              className="w-full bg-[#a855f7] text-white font-mono font-semibold text-sm py-3.5 rounded-lg hover:opacity-85 transition-opacity disabled:opacity-60 flex items-center justify-center gap-2"
             >
               {status === "loading" ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                   Submitting...
                 </>
               ) : (
@@ -107,12 +95,10 @@ export default function WaitlistForm() {
             </button>
 
             {status === "error" && (
-              <p className="mt-4 text-sm text-[#EF4444]">
-                Something went wrong. Please try again.
-              </p>
+              <p className="text-sm text-[#ef4444]">Something went wrong. Please try again.</p>
             )}
 
-            <p className="mt-4 text-xs text-[#94A3B8]">
+            <p className="font-mono text-[11px] text-[#666] mt-2">
               No spam. No credit card. Just early access.
             </p>
           </form>

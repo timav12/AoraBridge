@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const metrics = [
-  { value: "80%", label: "Cost reduction vs wire" },
-  { value: "<5 min", label: "Average settlement time" },
-  { value: "90+", label: "Countries supported" },
-  { value: "2 weeks", label: "Integration time" },
+  { value: "80%", label: "cost reduction vs wire" },
+  { value: "<5 min", label: "average settlement" },
+  { value: "90+", label: "countries supported" },
+  { value: "2 wks", label: "integration time" },
 ];
 
 export default function Metrics() {
@@ -28,28 +28,31 @@ export default function Metrics() {
   }, []);
 
   return (
-    <section id="metrics" className="py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-center text-[#0F172A] mb-16">
+    <section id="metrics" className="py-24 md:py-28 px-6">
+      <div className="max-w-[1120px] mx-auto">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#a855f7] mb-4 text-center">
+          By the Numbers
+        </p>
+        <h2 className="font-mono text-[32px] font-bold tracking-tight text-[#f0f0f0] mb-4 text-center leading-[1.2]">
           Built for scale
         </h2>
+        <p className="text-base text-[#666] max-w-[560px] mx-auto mb-12 leading-relaxed text-center">
+          Engineered to deliver from day one.
+        </p>
 
-        <div
-          ref={ref}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
-        >
+        <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {metrics.map((m, i) => (
             <div
               key={m.label}
-              className={`text-center p-8 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm ${
+              className={`bg-[#141414] border border-[#1a1a1a] rounded-xl p-8 text-center ${
                 visible ? "animate-in" : "opacity-0"
               }`}
               style={{ animationDelay: `${i * 100}ms` }}
             >
-              <div className="text-4xl md:text-5xl font-extrabold gradient-text mb-3">
+              <div className="font-mono text-4xl md:text-[40px] font-bold text-[#a855f7] mb-2">
                 {m.value}
               </div>
-              <div className="text-sm text-[#475569] font-medium">
+              <div className="font-mono text-xs text-[#666]">
                 {m.label}
               </div>
             </div>

@@ -1,64 +1,50 @@
-import { Building2, Users, Briefcase } from "lucide-react";
-
 const cards = [
   {
-    icon: Building2,
     title: "EoR Platforms",
-    description:
-      "White-label our API. Your brand, our rails. Cut wire costs by $7–15K/month per 300 contractors.",
-    gradient: "from-[#4F46E5] to-[#7C3AED]",
+    description: "White-label our API. Your brand, our rails. Cut wire costs by $7–15K/month per 300 contractors.",
+    borderColor: "border-t-[#a855f7]",
   },
   {
-    icon: Users,
     title: "HRIS Systems",
-    description:
-      "Your clients leave for Deel because you can't pay cross-border. Add global payroll in 1 week — keep clients, earn on every transaction.",
-    gradient: "from-[#7C3AED] to-[#06B6D4]",
+    description: "Your clients leave for Deel because you can\u2019t pay cross-border. Add global payroll in 1 week \u2014 keep clients, earn on every transaction.",
+    borderColor: "border-t-[#22d3ee]",
   },
   {
-    icon: Briefcase,
     title: "Staffing & Marketplaces",
-    description:
-      "Batch payroll: 1000 contractors, one API call. Instant pay = 37% better talent retention.",
-    gradient: "from-[#06B6D4] to-[#22C55E]",
+    description: "Batch payroll: 1000 contractors, one API call. Instant pay = 37% better talent retention.",
+    borderColor: "border-t-[#22c55e]",
   },
 ];
 
 export default function ForPlatforms() {
   return (
-    <section id="for-platforms" className="py-24 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-center text-[#0F172A] mb-16">
+    <section id="for-platforms" className="py-24 md:py-28 px-6 bg-[#141414]">
+      <div className="max-w-[1120px] mx-auto">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#a855f7] mb-4 text-center">
+          Use Cases
+        </p>
+        <h2 className="font-mono text-[32px] font-bold tracking-tight text-[#f0f0f0] mb-4 text-center leading-[1.2]">
           Built for platforms that pay globally
         </h2>
+        <p className="text-base text-[#666] max-w-[560px] mx-auto mb-12 leading-relaxed text-center">
+          White-label payment infra for every vertical.
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {cards.map((card) => (
             <div
               key={card.title}
-              className="relative bg-white rounded-2xl border border-[#E2E8F0] shadow-sm overflow-hidden hover:-translate-y-1 transition-transform duration-200"
+              className={`bg-[#141414] border border-[#1a1a1a] border-t-2 ${card.borderColor} rounded-xl p-8 hover:border-[#333] transition-colors`}
             >
-              {/* Gradient top border */}
-              <div
-                className={`h-1 w-full bg-gradient-to-r ${card.gradient}`}
-              />
-              <div className="p-8">
-                <div className="w-12 h-12 rounded-xl bg-[#F8FAFC] flex items-center justify-center mb-6">
-                  <card.icon className="w-6 h-6 text-[#4F46E5]" />
-                </div>
-                <h3 className="text-xl font-bold text-[#0F172A] mb-3">
-                  {card.title}
-                </h3>
-                <p className="text-[#475569] leading-relaxed mb-6">
-                  {card.description}
-                </p>
-                <a
-                  href="#waitlist"
-                  className="text-sm font-semibold text-[#4F46E5] hover:text-[#7C3AED] transition-colors"
-                >
-                  Learn more &rarr;
-                </a>
-              </div>
+              <h3 className="font-mono text-base font-bold text-[#f0f0f0] mb-2.5">
+                {card.title}
+              </h3>
+              <p className="text-sm text-[#666] leading-relaxed mb-4">
+                {card.description}
+              </p>
+              <a href="#waitlist" className="font-mono text-xs text-[#a855f7] hover:underline">
+                Learn more &rarr;
+              </a>
             </div>
           ))}
         </div>
