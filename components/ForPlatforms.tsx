@@ -12,14 +12,14 @@ const cards = [
     icon: Users,
     title: "HRIS Systems",
     description:
-      "Add cross-border payroll without building your own engine. New revenue stream in 1 week via Finch.",
+      "Your clients leave for Deel because you can't pay cross-border. Add global payroll in 1 week — keep clients, earn on every transaction.",
     gradient: "from-[#7C3AED] to-[#06B6D4]",
   },
   {
     icon: Briefcase,
     title: "Staffing & Marketplaces",
     description:
-      "Batch payroll: 1000 contractors, one API call. Instant settlement, happy talent.",
+      "Batch payroll: 1000 contractors, one API call. Instant pay = 37% better talent retention.",
     gradient: "from-[#06B6D4] to-[#22C55E]",
   },
 ];

@@ -44,7 +44,9 @@ export default function Differentiation() {
               We&apos;re the payment layer that makes YOUR platform more competitive.
             </p>
             <p className="text-lg text-[#475569] leading-relaxed">
-              790+ EoR/HRIS providers need payment infra. We serve them all.
+              The EoR market has 800+ providers. Deel and Remote serve only their
+              own clients. The other 790+ need neutral payment infrastructure.
+              That&apos;s us.
             </p>
             <a
               href="#waitlist"

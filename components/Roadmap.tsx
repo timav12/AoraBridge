@@ -18,7 +18,7 @@ const items = [
     title: "Bridge Advance",
     badge: "COMING",
     badgeColor: "bg-[#F59E0B] text-white",
-    description: "Up to $5K between contracts. Zero competition.",
+    description: "Contractors lose income between gigs — no fintech covers this gap. Up to $5K, auto-repaid from next payroll. Scored on payment history.",
   },
 ];
 

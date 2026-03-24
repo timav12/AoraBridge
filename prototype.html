@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AoraBridge — Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg-card: #141414;
+    --bg-elevated: #1a1a1a;
+    --border: #1a1a1a;
+    --border-hover: #333;
+    --text: #c8c8c8;
+    --text-muted: #666;
+    --text-heading: #f0f0f0;
+    --purple: #a855f7;
+    --purple-dim: rgba(168, 85, 247, 0.12);
+    --cyan: #22d3ee;
+    --cyan-dim: rgba(34, 211, 238, 0.10);
+    --green: #22c55e;
+    --green-dim: rgba(34, 197, 94, 0.10);
+    --amber: #f59e0b;
+    --amber-dim: rgba(245, 158, 11, 0.10);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--purple); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: var(--mono);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    background: var(--purple);
+    color: #fff;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .nav-links .btn-primary { color: #fff; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: #555; color: #fff; }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 24px; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--purple);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .section-title {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 160px;
+    padding-bottom: 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse, rgba(168,85,247,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .section-title {
+    font-size: 48px;
+    max-width: 700px;
+    margin: 0 auto 16px;
+  }
+  .hero .section-sub {
+    margin: 0 auto 40px;
+    max-width: 520px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--green);
+    background: var(--green-dim);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── PAIN CARDS ── */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--border-hover); }
+  .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  .card-metric {
+    font-family: var(--mono);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 4px;
+  }
+  .card-metric-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+  /* ── STEPS ── */
+  .steps-section { background: var(--bg-card); }
+  .grid-3-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .step {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .step-number {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--purple);
+    background: var(--purple-dim);
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .step h3 {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+  }
+  .step p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+  /* ── CODE BLOCK ── */
+  .code-window {
+    max-width: 640px;
+    margin: 48px auto 0;
+    background: linear-gradient(180deg, #1e293b, #0f172a);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .code-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .code-dot.red { background: #ef4444; }
+  .code-dot.yellow { background: #f59e0b; }
+  .code-dot.green { background: #22c55e; }
+  .code-header span {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-left: 8px;
+  }
+  .code-body {
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.8;
+    color: #e2e8f0;
+    overflow-x: auto;
+  }
+  .code-body .purple { color: var(--purple); }
+  .code-body .cyan { color: var(--cyan); }
+  .code-body .amber { color: var(--amber); }
+  .code-body .green { color: var(--green); }
+  .code-body .muted { color: #64748b; }
+
+  /* ── METRICS ── */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .metric-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+  }
+  .metric-value {
+    font-family: var(--mono);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 8px;
+  }
+  .metric-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── ICP CARDS ── */
+  .icp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    border-top: 2px solid var(--purple);
+    transition: border-color 0.2s;
+  }
+  .icp-card:nth-child(2) { border-top-color: var(--cyan); }
+  .icp-card:nth-child(3) { border-top-color: var(--green); }
+  .icp-card:hover { border-color: var(--border-hover); }
+  .icp-card h3 {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 10px;
+  }
+  .icp-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .icp-card a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--purple);
+    text-decoration: none;
+  }
+  .icp-card a:hover { text-decoration: underline; }
+
+  /* ── COMPARISON ── */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .comparison-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .comparison-text p strong { color: var(--text-heading); }
+  .comparison-table {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    font-size: 13px;
+    font-family: var(--mono);
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison-row:last-child { border-bottom: none; }
+  .comparison-row.header {
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .comparison-row > div {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+  }
+  .comparison-row > div:first-child { color: var(--text); font-weight: 500; }
+  .comparison-row > div:nth-child(2) { color: var(--text-muted); }
+  .comparison-row > div:nth-child(3) {
+    color: var(--purple);
+    font-weight: 600;
+    background: rgba(168,85,247,0.04);
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap-section { background: var(--bg-card); }
+  .timeline { margin-top: 48px; max-width: 600px; position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--purple), var(--cyan));
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 40px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -28px; top: 4px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--purple);
+  }
+  .timeline-item:first-child .timeline-dot { background: var(--purple); }
+  .timeline-quarter {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  .badge-green { background: var(--green-dim); color: var(--green); }
+  .badge-amber { background: var(--amber-dim); color: var(--amber); }
+  .timeline-item h3 {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 6px;
+  }
+  .timeline-item p { color: var(--text-muted); font-size: 14px; }
+
+  /* ── WAITLIST ── */
+  .waitlist {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .waitlist::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(168,85,247,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .waitlist .section-title, .waitlist .section-sub {
+    margin-left: auto; margin-right: auto;
+  }
+  .waitlist-form {
+    max-width: 440px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .waitlist-form input, .waitlist-form select {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .waitlist-form input:focus, .waitlist-form select:focus {
+    border-color: var(--purple);
+  }
+  .waitlist-form input::placeholder { color: var(--text-muted); }
+  .waitlist-form select { cursor: pointer; }
+  .waitlist-form select option { background: var(--bg-card); }
+  .waitlist-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 24px;
+  }
+  .footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 48px;
+  }
+  .footer-brand p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    max-width: 320px;
+    line-height: 1.6;
+  }
+  .footer-tagline {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #444;
+    margin-top: 6px;
+  }
+  .footer-links { display: flex; gap: 48px; }
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom {
+    max-width: 1120px;
+    margin: 32px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #333;
+  }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+  .flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .flow-icon {
+    width: 56px; height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .flow-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .flow-arrow {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    position: relative;
+    margin: 0 4px;
+  }
+  .flow-arrow-label {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .grid-3, .grid-3-steps, .grid-4 { grid-template-columns: 1fr; }
+    .comparison { grid-template-columns: 1fr; }
+    .hero .section-title { font-size: 32px; }
+    .nav-links { display: none; }
+    .footer-inner { flex-direction: column; }
+    .flow-arrow { width: 40px; }
+    .comparison-row { grid-template-columns: 100px 1fr 1fr; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Aora<span>Bridge</span></a>
+    <div class="nav-links">
+      <a href="#how-it-works">How it Works</a>
+      <a href="#platforms">For Platforms</a>
+      <a href="#metrics">Pricing</a>
+      <a href="#">API Docs</a>
+      <a href="#waitlist" class="btn-primary">Get Early Access</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><div class="dot"></div> Accepting launch partners</div>
+    <h1 class="section-title">Cross-border payroll.<br>Instant.</h1>
+    <p class="section-sub">Payment API for EoR, HRIS, and staffing platforms. Cut wire costs by 80%. Settle in minutes, not days.</p>
+    <div class="hero-buttons">
+      <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
+      <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+    </div>
+
+    <!-- Flow diagram -->
+    <div class="flow">
+      <div class="flow-node">
+        <div class="flow-icon" style="background: var(--purple-dim); color: var(--purple);">API</div>
+        <div class="flow-label">Your Platform</div>
+      </div>
+      <div class="flow-arrow" style="margin-top: -16px;">
+        <div class="flow-arrow-label" style="background: var(--purple-dim); color: var(--purple);">USDC</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-icon" style="background: #fff; color: #000; font-size: 12px;">AB</div>
+        <div class="flow-label">AoraBridge</div>
+      </div>
+      <div class="flow-arrow" style="margin-top: -16px; background: linear-gradient(90deg, var(--cyan), var(--green));">
+        <div class="flow-arrow-label" style="background: var(--green-dim); color: var(--green);">Local FX</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-icon" style="background: var(--green-dim); color: var(--green);">$$</div>
+        <div class="flow-label">Contractors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section>
+  <div class="container">
+    <div class="section-label">The Problem</div>
+    <div class="section-title">Cross-border payments are broken</div>
+    <p class="section-sub" style="margin-bottom: 48px;">SWIFT wires are slow, expensive, and opaque. Your margins and contractor retention suffer.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon" style="background: var(--amber-dim); color: var(--amber);">$</div>
+        <div class="card-metric">$25–50</div>
+        <div class="card-metric-label">per wire</div>
+        <p>SWIFT fees eat into your margins on every contractor payment.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background: var(--purple-dim); color: var(--purple);">⏱</div>
+        <div class="card-metric">3–7 days</div>
+        <div class="card-metric-label">to settle</div>
+        <p>Contractors wait almost a week. They switch to competitors who pay faster.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background: var(--cyan-dim); color: var(--cyan);">%</div>
+        <div class="card-metric">3–5%</div>
+        <div class="card-metric-label">hidden FX markup</div>
+        <p>Banks bury fees in exchange rates. Your contractors get less.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps-section" id="how-it-works">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">One API. Instant global payroll.</div>
+    <p class="section-sub">Three steps. No SWIFT. No waiting.</p>
+    <div class="grid-3-steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h3>Integrate</h3>
+        <p>Add our API to your platform in under 2 weeks. One endpoint, full documentation.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <h3>Pay</h3>
+        <p>Trigger payroll via USDC/USDT. We handle conversion to 40+ local currencies in 90+ countries.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <h3>Save</h3>
+        <p>0.5–1% fee vs 3–5% with banks. Your contractors get paid in minutes.</p>
+      </div>
+    </div>
+
+    <!-- Code block -->
+    <div class="code-window">
+      <div class="code-header">
+        <div class="code-dot red"></div>
+        <div class="code-dot yellow"></div>
+        <div class="code-dot green"></div>
+        <span>api-request.sh</span>
+      </div>
+      <div class="code-body">
+<span class="purple">POST</span> <span class="cyan">/v1/payroll/batch</span>
+{
+  <span class="amber">"contractor_ids"</span>: [<span class="muted">"c_392"</span>, <span class="muted">"c_847"</span>, <span class="muted">"c_103"</span>],
+  <span class="amber">"currency"</span>: <span class="muted">"USDC"</span>,
+  <span class="amber">"auto_convert"</span>: <span class="cyan">true</span>,
+  <span class="amber">"settlement"</span>: <span class="muted">"instant"</span>
+}
+<span class="green">// Response: 3 payments settled in 47 seconds</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="container">
+    <div class="section-label">By the Numbers</div>
+    <div class="section-title">Built for scale</div>
+    <p class="section-sub" style="margin-bottom: 48px;">Engineered to deliver from day one.</p>
+    <div class="grid-4">
+      <div class="metric-box">
+        <div class="metric-value">80%</div>
+        <div class="metric-label">cost reduction vs wire</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value">&lt;5 min</div>
+        <div class="metric-label">average settlement</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value">90+</div>
+        <div class="metric-label">countries supported</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value">2 wks</div>
+        <div class="metric-label">integration time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR PLATFORMS -->
+<section id="platforms" style="background: var(--bg-card);">
+  <div class="container">
+    <div class="section-label">Use Cases</div>
+    <div class="section-title">Built for platforms that pay globally</div>
+    <p class="section-sub" style="margin-bottom: 48px;">White-label payment infra for every vertical.</p>
+    <div class="grid-3">
+      <div class="icp-card">
+        <h3>EoR Platforms</h3>
+        <p>White-label our API. Your brand, our rails. Cut wire costs by $7–15K/month per 300 contractors.</p>
+        <a href="#waitlist">Learn more &rarr;</a>
+      </div>
+      <div class="icp-card">
+        <h3>HRIS Systems</h3>
+        <p>Your clients leave for Deel because you can't pay cross-border. Add global payroll in 1 week — keep clients, earn on every transaction.</p>
+        <a href="#waitlist">Learn more &rarr;</a>
+      </div>
+      <div class="icp-card">
+        <h3>Staffing &amp; Marketplaces</h3>
+        <p>Batch payroll: 1000 contractors, one API call. Instant pay = 37% better talent retention.</p>
+        <a href="#waitlist">Learn more &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATION -->
+<section>
+  <div class="container">
+    <div class="section-label">Why AoraBridge</div>
+    <div class="section-title" style="margin-bottom: 48px;">Neutral infrastructure, not another EoR</div>
+    <div class="comparison">
+      <div class="comparison-text">
+        <p>Deel and Remote build for their own clients. They won't white-label for competitors.</p>
+        <p><strong>We're the payment layer that makes YOUR platform more competitive.</strong></p>
+        <p>The EoR market has 800+ providers. Deel and Remote serve only their own clients. The other 790+ need neutral payment infrastructure. That's us.</p>
+        <a href="#waitlist" class="btn-primary" style="margin-top: 16px;">Become a partner</a>
+      </div>
+      <div class="comparison-table">
+        <div class="comparison-row header">
+          <div>Feature</div>
+          <div>Traditional</div>
+          <div>AoraBridge</div>
+        </div>
+        <div class="comparison-row">
+          <div>Model</div>
+          <div>In-house EoR</div>
+          <div>Neutral API</div>
+        </div>
+        <div class="comparison-row">
+          <div>White-label</div>
+          <div>&#10005;</div>
+          <div>&#10003;</div>
+        </div>
+        <div class="comparison-row">
+          <div>Cost</div>
+          <div>$25–50 wire</div>
+          <div>0.5–1% flat</div>
+        </div>
+        <div class="comparison-row">
+          <div>Settlement</div>
+          <div>3–7 days</div>
+          <div>&lt; 5 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap-section">
+  <div class="container">
+    <div class="section-label">Roadmap</div>
+    <div class="section-title">What's next</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-quarter">Q2 2026 <span class="badge badge-green">NOW</span></div>
+        <h3>Stablecoin Payroll API</h3>
+        <p>Core payment infrastructure. USDC/USDT payroll in 90+ countries.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-quarter">Q3 2026</div>
+        <h3>Contractor Wallet + Micro-factoring</h3>
+        <p>Contractors manage earnings, access early payouts.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-quarter">Q4 2026 <span class="badge badge-amber">COMING</span></div>
+        <h3>Bridge Advance</h3>
+        <p>Contractors lose income between gigs — no fintech covers this gap. Up to $5K, auto-repaid from next payroll. Scored on payment history.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist" id="waitlist">
+  <div class="container">
+    <div class="section-label">Early Access</div>
+    <div class="section-title">Be first in line</div>
+    <p class="section-sub" style="margin: 0 auto 0;">We're onboarding launch partners now. You earn revenue share for 3 months — zero setup fee, zero risk.</p>
+    <div class="waitlist-form">
+      <input type="email" placeholder="Work email" required>
+      <input type="text" placeholder="Company name" required>
+      <select>
+        <option>EoR Platform</option>
+        <option>HRIS System</option>
+        <option>Staffing / Marketplace</option>
+        <option>Other</option>
+      </select>
+      <button class="btn-primary" style="width: 100%; padding: 14px; font-size: 14px;">Join the Waitlist</button>
+      <div class="waitlist-note">No spam. No credit card. Just early access.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">Aora<span>Bridge</span></a>
+      <div class="footer-tagline">PAY &middot; ADVANCE &middot; BRIDGE</div>
+      <p>AoraBridge is a financial technology company, not a bank. Payment services provided through licensed partners. Not available in all jurisdictions.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#">About</a>
+        <a href="#">API Docs</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+        <a href="#">Press</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 AoraBridge. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

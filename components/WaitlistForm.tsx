@@ -43,8 +43,8 @@ export default function WaitlistForm() {
           Be first in line
         </h2>
         <p className="text-lg text-[#475569] mb-12 max-w-lg mx-auto">
-          We&apos;re onboarding launch partners now. Revenue share for the first 3
-          months — zero risk.
+          We&apos;re onboarding launch partners now. You earn revenue share for 3
+          months — zero setup fee, zero risk.
         </p>
 
         {status === "success" ? (

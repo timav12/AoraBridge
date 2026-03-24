@@ -11,7 +11,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "AoraBridge — Cross-border payroll. Instant.",
   description:
-    "Stablecoin-powered payment API for EoR, HRIS, and staffing platforms. Cut wire costs by 80%. Settle in minutes, not days.",
+    "Payment API for EoR, HRIS, and staffing platforms. Cut wire costs by 80%. Settle in minutes, not days.",
   keywords: [
     "cross-border payments",
     "contractor payroll",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AoraBridge — Cross-border payroll. Instant.",
     description:
-      "Stablecoin-powered payment API for EoR, HRIS, and staffing platforms.",
+      "Payment API for EoR, HRIS, and staffing platforms.",
     url: "https://aorabridge.com",
     siteName: "AoraBridge",
     type: "website",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AoraBridge — Cross-border payroll. Instant.",
     description:
-      "Stablecoin-powered payment API for EoR, HRIS, and staffing platforms.",
+      "Payment API for EoR, HRIS, and staffing platforms.",
   },
 };
 

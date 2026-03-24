@@ -14,7 +14,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-[#475569] leading-relaxed mb-10">
-          Stablecoin-powered payment API for EoR, HRIS, and staffing platforms.
+          Payment API for EoR, HRIS, and staffing platforms.
           Cut wire costs by 80%. Settle in minutes, not days.
         </p>
 

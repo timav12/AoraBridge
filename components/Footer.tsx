@@ -32,8 +32,9 @@ export default function Footer() {
               PAY &middot; ADVANCE &middot; BRIDGE
             </p>
             <p className="text-sm text-[#94A3B8] max-w-sm leading-relaxed">
-              AoraBridge is a financial technology company. Banking services
-              provided through licensed partners.
+              AoraBridge is a financial technology company, not a bank. Payment
+              services provided through licensed partners. Not available in all
+              jurisdictions.
             </p>
           </div>
 
