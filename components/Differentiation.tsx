@@ -1,8 +1,9 @@
 const rows = [
-  { feature: "Model", traditional: "In-house EoR", aorabridge: "Neutral API" },
+  { feature: "Model", traditional: "Closed ecosystem", aorabridge: "Open neutral API" },
   { feature: "White-label", traditional: "\u2715", aorabridge: "\u2713" },
   { feature: "Cost", traditional: "$25\u201350 wire", aorabridge: "0.5\u20131% flat" },
   { feature: "Settlement", traditional: "3\u20137 days", aorabridge: "< 5 min" },
+  { feature: "Integration", traditional: "Weeks to months", aorabridge: "< 2 weeks" },
 ];
 
 export default function Differentiation() {
@@ -13,20 +14,20 @@ export default function Differentiation() {
           Why AoraBridge
         </p>
         <h2 className="font-mono text-[32px] font-bold tracking-tight text-[#f0f0f0] mb-12 text-center leading-[1.2]">
-          Neutral infrastructure, not another EoR
+          Your payment layer, not someone else&apos;s platform
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left — positioning */}
           <div className="space-y-4">
             <p className="text-base text-[#666] leading-relaxed">
-              Deel and Remote build for their own clients. They won&apos;t white-label for competitors.
+              Most payment solutions lock you into their ecosystem. Your brand disappears. Your margins shrink. Your roadmap depends on theirs.
             </p>
             <p className="text-base text-[#f0f0f0] font-semibold leading-relaxed">
-              We&apos;re the payment layer that makes YOUR platform more competitive.
+              AoraBridge is neutral infrastructure — your brand, your clients, your margins. We power the payments, you own the relationship.
             </p>
             <p className="text-base text-[#666] leading-relaxed">
-              The EoR market has 800+ providers. Deel and Remote serve only their own clients. The other 790+ need neutral payment infrastructure. That&apos;s us.
+              800+ EoR and HRIS platforms need cross-border payment rails they can white-label and control. We built exactly that.
             </p>
             <a
               href="#waitlist"
