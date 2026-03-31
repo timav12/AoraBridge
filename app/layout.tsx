@@ -16,9 +16,9 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aorabridge.com"),
-  title: "AoraBridge — Cross-border payroll. Instant.",
+  title: "AoraBridge — Cross-Border Contractor Payment API for EoR & HRIS",
   description:
-    "Payment API for EoR, HRIS, and staffing platforms. Cut wire costs by 80%. Settle in minutes, not days.",
+    "White-label payment API for EoR, HRIS, and staffing platforms. Settle contractor payments in under 5 minutes. 0.5–1% fee. 90+ countries. Join the waitlist.",
   keywords: [
     "cross-border payments",
     "contractor payroll",
@@ -33,18 +33,18 @@ export const metadata: Metadata = {
     canonical: "https://aorabridge.com",
   },
   openGraph: {
-    title: "AoraBridge — Cross-border payroll. Instant.",
+    title: "AoraBridge — Cross-Border Contractor Payment API for EoR & HRIS",
     description:
-      "Payment API for EoR, HRIS, and staffing platforms. Cut wire costs by 80%. Settle in minutes, not days.",
+      "White-label payment API for EoR, HRIS, and staffing platforms. Settle contractor payments in under 5 minutes. 0.5–1% fee. 90+ countries.",
     url: "https://aorabridge.com",
     siteName: "AoraBridge",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AoraBridge — Cross-border payroll. Instant.",
+    title: "AoraBridge — Cross-Border Contractor Payment API for EoR & HRIS",
     description:
-      "Payment API for EoR, HRIS, and staffing platforms.",
+      "White-label payment API for EoR, HRIS, and staffing platforms. Settle contractor payments in under 5 minutes. 0.5–1% fee. 90+ countries.",
   },
 };
 

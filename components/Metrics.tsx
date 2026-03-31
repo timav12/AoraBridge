@@ -34,7 +34,7 @@ export default function Metrics() {
           By the Numbers
         </p>
         <h2 className="font-mono text-[32px] font-bold tracking-tight text-[#f0f0f0] mb-4 text-center leading-[1.2]">
-          Built for scale
+          Payment Infrastructure Built to Scale With Your Platform
         </h2>
         <p className="text-base text-[#666] max-w-[560px] mx-auto mb-12 leading-relaxed text-center">
           Engineered to deliver from day one.

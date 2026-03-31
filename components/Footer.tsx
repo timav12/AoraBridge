@@ -61,9 +61,10 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-[#1a1a1a] pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-mono text-[11px] text-[#333]">
-            &copy; 2026 AoraBridge. All rights reserved.
-          </p>
+          <div className="flex items-center gap-4 font-mono text-[11px] text-[#333]">
+            <span>&copy; 2026 AoraBridge. All rights reserved.</span>
+            <a href="/privacy" className="hover:text-[#666] transition-colors">Privacy Policy</a>
+          </div>
 
           {/* Social icons */}
           <div className="flex items-center gap-4">

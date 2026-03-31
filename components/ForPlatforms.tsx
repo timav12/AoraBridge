@@ -11,7 +11,7 @@ const cards = [
   },
   {
     title: "Staffing & Marketplaces",
-    description: "Batch payroll: 1000 contractors, one API call. Instant pay = 37% better talent retention.",
+    description: "Batch payroll: 1000 contractors, one API call. Platforms that pay same-day report significantly higher contractor retention and repeat engagement.",
     borderColor: "border-t-[#22c55e]",
   },
 ];
