@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="#" className="font-mono font-bold text-lg text-white tracking-tight">
-              Aora<span className="text-[#a855f7]">Bridge</span>
+              Aora<span className="text-[#555] mx-0.5">/</span><span className="text-[#a855f7]">Bridge</span>
             </a>
             <p className="font-mono text-[10px] tracking-[0.15em] text-[#444] mt-1.5">
               PAY &middot; ADVANCE &middot; BRIDGE

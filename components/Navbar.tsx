@@ -19,7 +19,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-[60px]">
           {/* Logo */}
           <a href="#" className="font-mono font-bold text-lg text-white tracking-tight">
-            Aora<span className="text-[#a855f7]">Bridge</span>
+            Aora<span className="text-[#555] mx-0.5">/</span><span className="text-[#a855f7]">Bridge</span>
           </a>
 
           {/* Desktop links */}
