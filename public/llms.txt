@@ -1,0 +1,36 @@
+# AoraBridge
+
+> AoraBridge is a cross-border payroll API for Employer of Record (EoR), HRIS, and staffing platforms. It enables batch contractor payments in 90+ countries via USDC/USDT with settlement in under 5 minutes at 0.5–1% fees, compared to $25–50 per wire and 3–7 day settlement with SWIFT.
+
+AoraBridge provides white-label payment infrastructure — platforms integrate once via REST API and pay global contractors under their own brand. The core product (Stablecoin Payroll API) launched Q2 2026. Contractor wallets and micro-factoring are planned for Q3 2026. Bridge Advance (up to $5,000 income advance auto-repaid from next payroll) is targeted for Q4 2026.
+
+## Key Facts
+
+- Cost: 0.5–1% flat fee vs 3–5% hidden FX markup with banks
+- Settlement: Under 5 minutes vs 3–7 days via SWIFT
+- Coverage: 90+ countries, 40+ local currencies
+- Integration: Under 2 weeks via REST API
+- Target customers: EoR platforms, HRIS systems, staffing agencies, contractor marketplaces
+- Currency input: USDC or USDT
+- White-label: Yes, full white-label with open API
+- Not a bank: Payment services provided through licensed partners
+
+## Use Cases
+
+- EoR Platforms: White-label the API under your own brand. Cut wire costs by $7–15K/month per 300 contractors.
+- HRIS Systems: Add cross-border payroll without building your own engine. Integrates in 1 week via Finch.
+- Staffing & Marketplaces: Batch payroll for 1000+ contractors in a single API call. Instant settlement.
+
+## API Example
+
+POST /v1/payroll/batch with contractor_ids, currency (USDC/USDT), auto_convert flag, and settlement mode. Response confirms settlement in under 60 seconds for typical batches.
+
+## Roadmap
+
+- Q2 2026: Stablecoin Payroll API (live)
+- Q3 2026: Contractor Wallet + Micro-factoring
+- Q4 2026: Bridge Advance — up to $5K between contracts, auto-repaid from next payroll
+
+## Pages
+
+- Home: https://aorabridge.com
