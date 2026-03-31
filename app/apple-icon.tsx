@@ -15,7 +15,7 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontFamily: "monospace",
+          fontFamily: "'JetBrains Mono', 'Courier New', monospace",
           fontSize: 110,
           fontWeight: 700,
           color: "#a855f7",
