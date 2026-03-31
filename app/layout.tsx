@@ -15,6 +15,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aorabridge.com"),
   title: "AoraBridge — Cross-border payroll. Instant.",
   description:
     "Payment API for EoR, HRIS, and staffing platforms. Cut wire costs by 80%. Settle in minutes, not days.",
@@ -28,10 +29,13 @@ export const metadata: Metadata = {
     "staffing",
     "payment API",
   ],
+  alternates: {
+    canonical: "https://aorabridge.com",
+  },
   openGraph: {
     title: "AoraBridge — Cross-border payroll. Instant.",
     description:
-      "Payment API for EoR, HRIS, and staffing platforms.",
+      "Payment API for EoR, HRIS, and staffing platforms. Cut wire costs by 80%. Settle in minutes, not days.",
     url: "https://aorabridge.com",
     siteName: "AoraBridge",
     type: "website",
