@@ -20,7 +20,17 @@ export default function WaitlistForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, company, type }),
       });
-      setStatus(res.ok ? "success" : "error");
+      if (res.ok) {
+        setStatus("success");
+        if (typeof window !== "undefined" && typeof window.gtag === "function") {
+          window.gtag("event", "waitlist_signup", {
+            event_category: "conversion",
+            platform_type: type,
+          });
+        }
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
